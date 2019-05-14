@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>index</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-slides *ngIf="carouselList.length" autoplay=2000 style="height:150px">
+    <ion-slide *ngFor="let tmp of carouselList">
+      <img [src]="'../../assets/'+tmp.img" alt="">
+    </ion-slide>
+  </ion-slides>
+  <ion-scroll scrollX style="height:310px;white-space:nowrap;">
+    <ion-card *ngFor="let item of newPList" style="display:inline-block">
+      <ion-card-header>
+        <img [src]="'../../assets/'+item.pic" alt="">
+      </ion-card-header>
+      <ion-card-content>
+        <h4>{{item.title}}</h4>
+      </ion-card-content>
+    </ion-card>
+  </ion-scroll>
+  <ion-list>
+    <ion-item *ngFor="let item of recommendedList" text-wrap [navPush]="detailPage" [navParams]="{id:item.pid}">
+      <ion-thumbnail item-start>
+        <img [src]="'../../assets/'+item.pic" alt="">
+      </ion-thumbnail>
+      <h4>{{item.title}}</h4>
+      <p>{{item.details}}</p>
+      <button ion-button clear item-end>
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
